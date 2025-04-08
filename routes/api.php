@@ -40,6 +40,7 @@ Route::middleware('auth:sanctum','role:SISTEMAS|USUARIO')->group(function () {
    
     //Mascotas
     Route::get('mascotas', 'Admin\\MascotaController@index');
+    Route::get('mascotas/especies', 'Admin\\MascotaController@especies');
     Route::post('mascotas', 'Admin\\MascotaController@store');
     Route::get("mascotas/{id}", 'Admin\\MascotaController@show');
     Route::put('mascotas/{id}', 'Admin\\MascotaController@update');
