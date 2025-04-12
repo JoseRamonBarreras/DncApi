@@ -40,7 +40,7 @@ class MascotaController extends Controller
         }
 
         $mascota->save();
-        return $this->message('success', 'Guardado!', $mascota->id);
+        return $this->message('success', 'Guardado!', $mascota);
     }
 
 
@@ -60,18 +60,15 @@ class MascotaController extends Controller
         $mascota->phone = $request->phone;
 
         if ($request->has('foto') && $request->filled('foto')) {
-            // Si hay una nueva foto, eliminar la anterior
             if ($mascota->foto) {
                 $this->deleteOldImage($mascota->foto);
             }
-
-            // Subir la nueva foto
             $imageName = $uploadService->uploadFile($request->foto, 'public/mascotas');
             $mascota->foto = $imageName;
         }
 
         $mascota->save();
-        return $this->message('success', 'Actualizado!', $mascota->id);
+        return $this->message('success', 'Actualizado!', $mascota);
     }
 
     private function deleteOldImage($imageName)
@@ -91,12 +88,12 @@ class MascotaController extends Controller
         return response()->json(true);
     }
 
-    private function message($type, $title, $id ){
+    private function message($type, $title, $mascota ){
         return response()->json(
             [
                 "type" => $type,
                 "title" => $title,
-                "mascota_id" => $id
+                "mascota" => $mascota
             ]
         );
     }
