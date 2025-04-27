@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
 use App\Models\Mascota;
 use App\Models\Especie;
 use App\Interfaces\UploadServiceInterface;
+use DNS2D;
 
 class MascotaController extends Controller
 {
@@ -46,7 +48,14 @@ class MascotaController extends Controller
 
     public function show($id)
     {
-        //
+        $mascota = Mascota::with(['especie']) 
+                        ->findOrFail($id);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Perfil de mascota',
+            'mascota' => $mascota
+        ]);
     }
 
 
@@ -79,7 +88,33 @@ class MascotaController extends Controller
         }
     }
 
+    public function viewQr($id)
+    {
+        $mascota = Mascota::findOrFail($id);
+        $urlBase = config('app.frontend_url');
+        $url = "{$urlBase}mascota/perfil/{$mascota->id}";
 
+        $qrCode = base64_decode(DNS2D::getBarcodePNG($url, 'QRCODE', 5, 5));
+
+        return response($qrCode)
+            ->header('Content-Type', 'image/png');
+    }
+
+    public function descargarQr($id)
+    {
+        $mascota = Mascota::findOrFail($id);
+        $urlBase = config('app.frontend_url');
+        $url = "{$urlBase}mascota/perfil/{$mascota->id}";
+
+        $qrCode = base64_decode(DNS2D::getBarcodePNG($url, 'QRCODE', 5, 5));
+
+        $fileName = "qr_mascota_{$mascota->id}.png";
+
+        return Response::make($qrCode, 200, [
+            'Content-Type' => 'image/png',
+            'Content-Disposition' => "attachment; filename=\"$fileName\""
+        ]);
+    }
 
     public function destroy($id)
     {
