@@ -57,9 +57,8 @@ class DashboardController extends Controller
 
     public function usuarios()
     {
-        $header = apache_request_headers();
-        $rol = $header['role'];
-        $id = $header['user_id'];
+        $rol = request()->header('role');
+        $id = request()->header('user_id');
 
         return User::with(['profile', 'roles' => function($query){ 
             $query->select('id','name as rol'); 
@@ -76,7 +75,9 @@ class DashboardController extends Controller
             'nombre' => $user->name,
             'correo' => $user->email,
             'rol' => $user->getRoleNames()[0],
-            'favorite_pet' => $user->profile->favorite_pet
+            'favorite_pet' => $user->profile->favorite_pet,
+            'phone' => $user->profile->phone,
+            'address' => $user->profile->address
         ]);
     }
 
@@ -95,6 +96,8 @@ class DashboardController extends Controller
 
             $userProfile = Profile::create([
                 'favorite_pet' => $request->favorite_pet,
+                'phone' => $request->phone,
+                'address' => $request->address,
                 'user_id' => $user->id
             ]);
 
@@ -124,7 +127,9 @@ class DashboardController extends Controller
 
             $userProfile = Profile::where('user_id',$usuario->id)
                             ->update([
-                                'favorite_pet' => $request->favorite_pet
+                                'favorite_pet' => $request->favorite_pet,
+                                'phone' => $request->phone,
+                                'address' => $request->address
                             ]);
             return $user;
 

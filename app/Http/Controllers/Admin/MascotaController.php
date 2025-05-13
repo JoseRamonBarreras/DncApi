@@ -15,10 +15,9 @@ class MascotaController extends Controller
 
     public function index()
     {
-        $header = apache_request_headers();
-        $rol = $header['role'];
-        $id = $header['user_id'];
-        return Mascota::with('especie')->where('user_id', $id)->select('id', 'name', 'birthday', 'phone', 'especie_id', 'foto')->get();
+        $rol = request()->header('role');
+        $id = request()->header('user_id');
+        return Mascota::with('especie')->where('user_id', $id)->select('id', 'name', 'descripcion', 'birthday', 'phone', 'especie_id', 'foto')->get();
     }
 
     public function especies()
@@ -31,6 +30,7 @@ class MascotaController extends Controller
     {
         $mascota = new Mascota();
         $mascota->name = $request->name;
+        $mascota->descripcion = $request->descripcion;
         $mascota->birthday = $request->birthday;
         $mascota->especie_id = $request->especie_id;
         $mascota->user_id = $request->user_id;
@@ -63,6 +63,7 @@ class MascotaController extends Controller
     {
         $mascota = Mascota::findOrFail($id);
         $mascota->name = $request->name;
+        $mascota->descripcion = $request->descripcion;
         $mascota->birthday = $request->birthday;
         $mascota->especie_id = $request->especie_id;
         $mascota->user_id = $request->user_id;

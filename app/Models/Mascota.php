@@ -10,7 +10,7 @@ class Mascota extends Model
 {
     use HasFactory;
     protected $table = "mascotas";
-    protected $fillable = ["id", "name", "birthday", "phone", "user_id", "especie_id", "foto"];
+    protected $fillable = ["id", "name", "descripcion", "birthday", "phone", "user_id", "especie_id", "foto"];
 
     public function especie()
     {
