@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
 use App\Models\Mascota;
 use App\Models\Especie;
+use App\Models\User;
 use App\Interfaces\UploadServiceInterface;
 use DNS2D;
 
@@ -17,7 +18,7 @@ class MascotaController extends Controller
     {
         $rol = request()->header('role');
         $id = request()->header('user_id');
-        return Mascota::with('especie')->where('user_id', $id)->select('id', 'name', 'descripcion', 'birthday', 'phone', 'especie_id', 'foto')->get();
+        return Mascota::with('especie')->where('user_id', $id)->select('id', 'name', 'descripcion', 'birthday', 'especie_id', 'foto')->get();
     }
 
     public function especies()
@@ -34,7 +35,6 @@ class MascotaController extends Controller
         $mascota->birthday = $request->birthday;
         $mascota->especie_id = $request->especie_id;
         $mascota->user_id = $request->user_id;
-        $mascota->phone = $request->phone;
 
         if ($request->filled('foto')) {
             $imageName = $uploadService->uploadFile($request->foto, 'public/mascotas');
@@ -50,6 +50,10 @@ class MascotaController extends Controller
     {
         $mascota = Mascota::with(['especie']) 
                         ->findOrFail($id);
+
+        $user =  $user = User::find( $mascota->user_id );
+        $mascota->phone = $user->profile->phone;
+        $mascota->address = $user->profile->address;
 
         return response()->json([
             'success' => true,
@@ -67,7 +71,6 @@ class MascotaController extends Controller
         $mascota->birthday = $request->birthday;
         $mascota->especie_id = $request->especie_id;
         $mascota->user_id = $request->user_id;
-        $mascota->phone = $request->phone;
 
         if ($request->has('foto') && $request->filled('foto')) {
             if ($mascota->foto) {

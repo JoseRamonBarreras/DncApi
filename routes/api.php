@@ -47,6 +47,10 @@ Route::middleware('auth:sanctum','role:SISTEMAS|USUARIO')->group(function () {
     Route::delete("mascotas/{id}", 'Admin\\MascotaController@destroy');
     Route::get('mascotas/descargar/qr/{id}', 'Admin\\MascotaController@descargarQr');
 
+    //UserProfile
+    Route::get('user_profile/{id}','Admin\\DashboardController@usuario');
+
+
 
 });
 
