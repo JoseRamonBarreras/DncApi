@@ -87,7 +87,8 @@ class DashboardController extends Controller
             $user = User::create([
                 'name' => $request->nombre,
                 'email' => $request->correo,
-                'password' => Hash::make($request->password)
+                'password' => Hash::make($request->password),
+                'plan_id' => 1
             ]);
             
             $user->assignRole($request->rol);
@@ -158,6 +159,23 @@ class DashboardController extends Controller
         } catch (Exception $e) {
             return response()->json(['message' => $e->getMessage()]);
         }  
+    }
+
+    public function updateProfile(Request $request)
+    {
+        try {
+            $user = User::find($request->id);
+
+            $userProfile = Profile::where('user_id',$user->id)
+                            ->update([
+                                'phone' => $request->phone,
+                                'address' => $request->address
+                            ]);
+            return $user;
+
+        } catch (Exception $e) {
+            return response()->json(['message' => $e->getMessage()]);
+        }   
     }
 
 }
