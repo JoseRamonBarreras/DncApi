@@ -77,7 +77,8 @@ class DashboardController extends Controller
             'rol' => $user->getRoleNames()[0],
             'favorite_pet' => $user->profile->favorite_pet,
             'phone' => $user->profile->phone,
-            'address' => $user->profile->address
+            'address' => $user->profile->address,
+            'privacy_control' => $user->privacy_control
         ]);
     }
 
@@ -88,7 +89,8 @@ class DashboardController extends Controller
                 'name' => $request->nombre,
                 'email' => $request->correo,
                 'password' => Hash::make($request->password),
-                'plan_id' => 1
+                'plan_id' => 1,
+                'privacy_control' => 0
             ]);
             
             $user->assignRole($request->rol);
@@ -176,6 +178,17 @@ class DashboardController extends Controller
         } catch (Exception $e) {
             return response()->json(['message' => $e->getMessage()]);
         }   
+    }
+
+    public function switchControl(Request $request){
+        try {
+            $user = User::findOrFail($request->userId);
+            $user->privacy_control = $request->control;
+            $user->saveOrFail();
+            return response()->json($user);
+        } catch (Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 500);
+        }
     }
 
 }

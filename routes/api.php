@@ -50,7 +50,7 @@ Route::middleware('auth:sanctum','role:SISTEMAS|USUARIO')->group(function () {
     //UserProfile
     Route::get('user_profile/{id}','Admin\\DashboardController@usuario');
     Route::post('user_profile','Admin\\DashboardController@updateProfile');
-
+    Route::put('user_profile/privacy_control','Admin\\DashboardController@switchControl');
 
 
 });
