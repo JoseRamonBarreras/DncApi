@@ -5,19 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Plan extends Model
+class Status extends Model
 {
     use HasFactory;
-    protected $table = 'planes';
+    protected $table = 'status';
 
     public function clientes()
     {
         return $this->hasMany(Cliente::class);
     }
-
-    public function suscripciones()
-    {
-        return $this->hasMany(ClienteSuscripcion::class);
-    }
-
 }

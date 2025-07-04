@@ -17,13 +17,13 @@ class UserSeeder extends Seeder
     {
         $user = User::create([
             'name' => 'SISTEMAS',
-            'email' => 'admin.app@lechelaimperial.com',
+            'email' => 'admin.app@pedidosexpres.com',
             'password' => bcrypt('temporal')
         ]);
         $user->assignRole('SISTEMAS');
 
         $userProfile = Profile::create([
-            'favorite_pet' => 'Cachorros',
+            'phone' => '6866081712',
             'user_id' => $user->id
         ]);
     }

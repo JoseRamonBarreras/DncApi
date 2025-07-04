@@ -29,7 +29,7 @@ class LoginController extends Controller
             ]);
         }
 
-        $token = $user->createToken('PetQrToken')->plainTextToken;
+        $token = $user->createToken('ExpresToken')->plainTextToken;
             
         event(new UserLogsEvent($user));
 

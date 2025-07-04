@@ -8,9 +8,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
-use App\Models\Cia;
-use App\Models\Area;
-use App\Models\Movimiento;
 
 class User extends Authenticatable
 {
@@ -26,8 +23,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'plan_id',
-        'privacy_control'
+        'cliente_id'
     ];
 
     /**
@@ -55,6 +51,10 @@ class User extends Authenticatable
 
     public function profile(){
         return $this->hasOne('App\Models\Profile');
+    }
+
+    public function cliente(){
+        return $this->belongsTo(Cliente::class);
     }
 
 }

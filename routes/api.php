@@ -23,37 +23,34 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::middleware('auth:sanctum','role:SISTEMAS')->group(function () {
-    Route::get('dashboard/logs','Admin\\DashboardController@logs');
-    Route::get('dashboard/roles','Admin\\DashboardController@roles');
-    Route::post('dashboard/roles/guardar','Admin\\DashboardController@saveRol');
-    Route::put('dashboard/roles/actualizar','Admin\\DashboardController@updateRol');
-    Route::get('dashboard/usuarios','Admin\\DashboardController@usuarios');
-    Route::get('dashboard/usuario/{id}','Admin\\DashboardController@usuario');
-    Route::post('dashboard/usuario/guardar','Admin\\DashboardController@registerUsuario');
-    Route::put('dashboard/usuario/actualizar/{usuario}','Admin\\DashboardController@updateUsuario');
-    Route::delete('dashboard/usuario/eliminar','Admin\\DashboardController@deleteUsuario');
-    Route::put('dashboard/usuario/reset_password','Admin\\DashboardController@resetPassword');
-    Route::get('dashboard/usuario/profile/rh','Admin\\DashboardController@getProfileFromRH');
+    Route::get('users/logs','Admin\\UserController@logs');
+    Route::get('users/roles','Admin\\UserController@roles');
+    Route::get('users/usuarios','Admin\\UserController@index');
+    Route::get('users/usuario/{user}','Admin\\UserController@show');
+    Route::post('users/usuario/store','Admin\\UserController@store');
+    Route::put('users/usuario/update/{usuario}','Admin\\UserController@update');
+    Route::delete('users/usuario/delete','Admin\\UserController@destroy');
+    Route::put('users/usuario/reset_password','Admin\\UserController@resetPassword');
 });
 
-Route::middleware('auth:sanctum','role:SISTEMAS|USUARIO')->group(function () {
+// Route::middleware('auth:sanctum','role:SISTEMAS|USUARIO')->group(function () {
    
-    //Mascotas
-    Route::get('mascotas', 'Admin\\MascotaController@index');
-    Route::get('mascotas/especies', 'Admin\\MascotaController@especies');
-    Route::post('mascotas', 'Admin\\MascotaController@store');
+//     //Mascotas
+//     Route::get('mascotas', 'Admin\\MascotaController@index');
+//     Route::get('mascotas/especies', 'Admin\\MascotaController@especies');
+//     Route::post('mascotas', 'Admin\\MascotaController@store');
     
-    Route::put('mascotas/{id}', 'Admin\\MascotaController@update');
-    Route::delete("mascotas/{id}", 'Admin\\MascotaController@destroy');
-    Route::get('mascotas/descargar/qr/{id}', 'Admin\\MascotaController@descargarQr');
+//     Route::put('mascotas/{id}', 'Admin\\MascotaController@update');
+//     Route::delete("mascotas/{id}", 'Admin\\MascotaController@destroy');
+//     Route::get('mascotas/descargar/qr/{id}', 'Admin\\MascotaController@descargarQr');
 
-    //UserProfile
-    Route::get('user_profile/{id}','Admin\\DashboardController@usuario');
-    Route::post('user_profile','Admin\\DashboardController@updateProfile');
-    Route::put('user_profile/privacy_control','Admin\\DashboardController@switchControl');
+//     //UserProfile
+//     Route::get('user_profile/{id}','Admin\\DashboardController@usuario');
+//     Route::post('user_profile','Admin\\DashboardController@updateProfile');
+//     Route::put('user_profile/privacy_control','Admin\\DashboardController@switchControl');
 
 
-});
+// });
 
-Route::get('mascotas/view/qr/{id}', 'Admin\\MascotaController@viewQr');
-Route::get("mascotas/{id}", 'Admin\\MascotaController@show');
+// Route::get('mascotas/view/qr/{id}', 'Admin\\MascotaController@viewQr');
+// Route::get("mascotas/{id}", 'Admin\\MascotaController@show');

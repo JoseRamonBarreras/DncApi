@@ -9,8 +9,6 @@ use App\Models\User;
 use App\Models\Profile;
 use App\Models\UserLogs;
 use Spatie\Permission\Models\Role;
-use App\Models\Cia;
-use App\Models\ProfileFromRecursosHumanos;
 use App\Interfaces\UploadServiceInterface;
 
 class DashboardController extends Controller
