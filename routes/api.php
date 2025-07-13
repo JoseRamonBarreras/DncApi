@@ -33,6 +33,13 @@ Route::middleware('auth:sanctum','role:SISTEMAS')->group(function () {
     Route::put('users/usuario/reset_password','Admin\\UserController@resetPassword');
 });
 
+Route::middleware('auth:sanctum','role:ADMINISTRADOR')->group(function () {
+    Route::get('ajustes/{id}','Cliente\\AjusteController@ajustes');
+    Route::post('ajustes/logo','Cliente\\AjusteController@storeLogo');
+    Route::post('ajustes/portada','Cliente\\AjusteController@storePortada');
+    Route::post('ajustes/nombre','Cliente\\AjusteController@storeNombre');
+});
+
 // Route::middleware('auth:sanctum','role:SISTEMAS|USUARIO')->group(function () {
    
 //     //Mascotas
@@ -52,5 +59,5 @@ Route::middleware('auth:sanctum','role:SISTEMAS')->group(function () {
 
 // });
 
-// Route::get('mascotas/view/qr/{id}', 'Admin\\MascotaController@viewQr');
+Route::get('ajustes/view/qr/{id}', 'Cliente\\AjusteController@viewQr');
 // Route::get("mascotas/{id}", 'Admin\\MascotaController@show');

@@ -40,7 +40,8 @@ class LoginController extends Controller
             'user' => $user,
             'role' => $user->getRoleNames(),
             'permissions' => $user->getPermissionsViaRoles(),
-            'profile' => $user->profile
+            'profile' => $user->profile,
+            'cliente' => $user->cliente
             ]);
         } catch (Exception $e) {
             return response()->json(['message' => $e->getMessage()]);
