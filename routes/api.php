@@ -38,6 +38,12 @@ Route::middleware('auth:sanctum','role:ADMINISTRADOR')->group(function () {
     Route::post('ajustes/logo','Cliente\\AjusteController@storeLogo');
     Route::post('ajustes/portada','Cliente\\AjusteController@storePortada');
     Route::post('ajustes/nombre','Cliente\\AjusteController@storeNombre');
+
+    Route::get('datos/{id}','Cliente\\DatosController@datos');
+    Route::post('datos/direccion','Cliente\\DatosController@storeDireccion');
+    Route::post('datos/whatsapp','Cliente\\DatosController@storeWhatsapp');
+
+    Route::get('horarios/{id}','Cliente\\DatosController@horarios');
 });
 
 // Route::middleware('auth:sanctum','role:SISTEMAS|USUARIO')->group(function () {

@@ -115,7 +115,7 @@ class UserController extends Controller
                     'dia_semana' => $i,
                     'abre_desde' => '08:00:00',
                     'cierra_hasta' => '20:00:00',
-                    'activo' => false,
+                    'activo' => true,
                 ]);
             }
 
