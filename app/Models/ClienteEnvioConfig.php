@@ -13,8 +13,8 @@ class ClienteEnvioConfig extends Model
     protected $fillable = [
         'tipo_envio_id',
         'precio_fijo',
-        'permite_pickup',
-        'permite_order_on_site',
+        'permite_entrega_domicilio',
+        'permite_recoger_sucursal',
         'cliente_id'
     ];
 

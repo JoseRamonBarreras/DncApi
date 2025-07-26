@@ -44,6 +44,11 @@ Route::middleware('auth:sanctum','role:ADMINISTRADOR')->group(function () {
     Route::post('datos/whatsapp','Cliente\\DatosController@storeWhatsapp');
 
     Route::get('horarios/{id}','Cliente\\DatosController@horarios');
+    Route::post('horarios/horario','Cliente\\DatosController@storeHorario');
+
+    Route::get('envios/{id}','Cliente\\DatosController@envios');
+    Route::post('envios/envio','Cliente\\DatosController@storeEnvio');
+    Route::post('envios/rangos','Cliente\\DatosController@storeRangos');
 });
 
 // Route::middleware('auth:sanctum','role:SISTEMAS|USUARIO')->group(function () {

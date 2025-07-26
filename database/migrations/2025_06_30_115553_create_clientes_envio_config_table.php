@@ -17,8 +17,8 @@ class CreateClientesEnvioConfigTable extends Migration
             $table->id();
             $table->unsignedBigInteger('tipo_envio_id');
             $table->decimal('precio_fijo', 10, 2)->nullable();
-            $table->boolean('permite_pickup')->default(false);
-            $table->boolean('permite_order_on_site')->default(false);
+            $table->boolean('permite_entrega_domicilio')->default(false);
+            $table->boolean('permite_recoger_sucursal')->default(false);
 
             $table->unsignedBigInteger('cliente_id')->unique();
             $table->foreign('cliente_id')->references('id')->on('clientes')->onDelete('cascade');
