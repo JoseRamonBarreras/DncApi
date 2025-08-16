@@ -36,6 +36,11 @@ class Cliente extends Model
         return $this->hasMany(User::class);
     }
 
+    public function usuariosActivos()
+    {
+        return $this->hasMany(User::class)->where('activo', true);
+    }
+
     public function config()
     {
         return $this->hasOne(ClienteConfig::class);

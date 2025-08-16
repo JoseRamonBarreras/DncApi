@@ -47,6 +47,11 @@ Route::middleware('auth:sanctum','role:ADMINISTRADOR')->group(function () {
     Route::post('puestos/puesto','Cliente\\PuestoController@storePuesto');
     Route::put('puestos/puesto/{id}','Cliente\\PuestoController@updatePuesto');
     Route::delete('puestos/puesto/{id}','Cliente\\PuestoController@deletePuesto');
+
+    Route::get('usuarios/{id}','Cliente\\UsuarioController@index');
+    Route::post('usuarios/usuario','Cliente\\UsuarioController@store');
+    Route::put('usuarios/usuario/{id}','Cliente\\UsuarioController@update');
+    Route::delete('usuarios/usuario/{id}','Cliente\\UsuarioController@delete');
 });
 
 // Route::middleware('auth:sanctum','role:SISTEMAS|USUARIO')->group(function () {
