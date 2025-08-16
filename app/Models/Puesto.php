@@ -5,21 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ClienteHorario extends Model
+class Puesto extends Model
 {
     use HasFactory;
-    protected $table = 'clientes_horarios';
+    protected $table = 'puestos';
 
     protected $fillable = [
-        'dia_semana',
-        'abre_desde',
-        'cierra_hasta',
-        'activo',
-        'cliente_id'
+        'nombre',
+        'descripcion',
+        'cliente_id',
     ];
 
     public function cliente()
     {
         return $this->belongsTo(Cliente::class);
+    }
+
+    public function jefes()
+    {
+        return $this->hasMany(User::class, 'puesto_id');
     }
 }

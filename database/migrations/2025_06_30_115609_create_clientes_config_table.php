@@ -17,7 +17,6 @@ class CreateClientesConfigTable extends Migration
             $table->id();
             $table->string('logo_url')->nullable();
             $table->string('portada_url')->nullable();
-            $table->string('tipografia')->nullable();
             $table->text('direccion')->nullable();
             $table->decimal('ubicacion_lat', 10, 7)->nullable();
             $table->decimal('ubicacion_lng', 10, 7)->nullable();

@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
     {
         $user = User::create([
             'name' => 'SISTEMAS',
-            'email' => 'admin.app@pedidosexpres.com',
+            'email' => 'admin.app@avanzarh.com',
             'password' => bcrypt('temporal')
         ]);
         $user->assignRole('SISTEMAS');

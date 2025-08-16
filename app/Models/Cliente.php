@@ -41,14 +41,14 @@ class Cliente extends Model
         return $this->hasOne(ClienteConfig::class);
     }
 
-    public function horarios()
+    public function puestos()
     {
-        return $this->hasMany(ClienteHorario::class);
+        return $this->hasMany(Puesto::class);
     }
 
-    public function envioConfig()
+    public function puestosActivos()
     {
-        return $this->hasOne(ClienteEnvioConfig::class);
+        return $this->hasMany(Puesto::class)->where('activo', true);
     }
 
     public function suscripciones()

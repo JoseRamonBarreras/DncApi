@@ -95,29 +95,10 @@ class UserController extends Controller
                 'whatsapp' => $request->filled('phone') ? $request->phone : null,
                 'logo_url' => '',
                 'portada_url' => '',
-                'tipografia' => '',
                 'direccion' => '',
                 'ubicacion_lat' => null,
                 'ubicacion_lng' => null,
             ]);
-
-            ClienteEnvioConfig::create([
-                'cliente_id' => $cliente->id,
-                'tipo_envio_id' => 1,
-                'precio_fijo' => 0,
-                'permite_pickup' => false,
-                'permite_order_on_site' => false,
-            ]);
-
-            for ($i = 0; $i < 7; $i++) {
-                ClienteHorario::create([
-                    'cliente_id' => $cliente->id,
-                    'dia_semana' => $i,
-                    'abre_desde' => '08:00:00',
-                    'cierra_hasta' => '20:00:00',
-                    'activo' => true,
-                ]);
-            }
 
             DB::commit();
 

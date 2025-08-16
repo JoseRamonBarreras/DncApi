@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTipoEnviosTable extends Migration
+class CreatePuestosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,13 @@ class CreateTipoEnviosTable extends Migration
      */
     public function up()
     {
-        Schema::create('tipo_envios', function (Blueprint $table) {
+        Schema::create('puestos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
+            $table->text('descripcion')->nullable();
+            $table->foreignId('cliente_id')
+                  ->constrained('clientes')
+                  ->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -27,6 +31,6 @@ class CreateTipoEnviosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tipo_envios');
+        Schema::dropIfExists('puestos');
     }
 }

@@ -57,4 +57,8 @@ class User extends Authenticatable
         return $this->belongsTo(Cliente::class);
     }
 
+    public function puesto(){
+        return $this->belongsTo(Puesto::class);
+    }
+
 }
