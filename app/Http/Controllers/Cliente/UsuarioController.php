@@ -16,7 +16,7 @@ class UsuarioController extends Controller
         $cliente = Cliente::with(['usuariosActivos' => function ($q) {
             $q->whereHas('roles', function ($query) {
                 $query->where('name', 'JEFE'); 
-            })->with('puesto');;
+            })->with('puesto');
         }])
         ->select('id', 'nombre')
         ->findOrFail($id);

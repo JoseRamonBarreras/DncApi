@@ -61,4 +61,10 @@ class User extends Authenticatable
         return $this->belongsTo(Puesto::class);
     }
 
+    // Empleado puede responder varias encuestas
+    public function respuestas()
+    {
+        return $this->hasMany(Respuesta::class, 'empleado_id');
+    }
+
 }

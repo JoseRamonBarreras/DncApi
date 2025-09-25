@@ -52,6 +52,11 @@ Route::middleware('auth:sanctum','role:ADMINISTRADOR')->group(function () {
     Route::post('usuarios/usuario','Cliente\\UsuarioController@store');
     Route::put('usuarios/usuario/{id}','Cliente\\UsuarioController@update');
     Route::delete('usuarios/usuario/{id}','Cliente\\UsuarioController@delete');
+
+    Route::get('encuestas/{id}','Cliente\\EncuestaController@index');
+    Route::post('encuestas/encuesta','Cliente\\EncuestaController@store');
+    Route::put('encuestas/encuesta/{id}','Cliente\\EncuestaController@update');
+    Route::delete('encuestas/encuesta/{id}','Cliente\\EncuestaController@delete');
 });
 
 // Route::middleware('auth:sanctum','role:SISTEMAS|USUARIO')->group(function () {

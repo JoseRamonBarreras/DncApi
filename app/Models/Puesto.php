@@ -25,4 +25,9 @@ class Puesto extends Model
     {
         return $this->hasMany(User::class, 'puesto_id');
     }
+
+    public function encuestas()
+    {
+        return $this->hasMany(Encuesta::class, 'puesto_id');
+    }
 }

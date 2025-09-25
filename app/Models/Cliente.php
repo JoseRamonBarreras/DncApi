@@ -56,6 +56,11 @@ class Cliente extends Model
         return $this->hasMany(Puesto::class)->where('activo', true);
     }
 
+    public function encuestas()
+    {
+        return $this->hasMany(Encuesta::class)->where('activo', true);
+    }
+
     public function suscripciones()
     {
         return $this->hasMany(ClienteSuscripcion::class);
